@@ -38,8 +38,15 @@ Requirement already satisfied: MarkupSafe==1.1.1 in /Users/I751244/Desktop/mypro
 - 이때 순환 참조 장애 방지를 위해 팩토리패턴을 사용하여 create_app으로 감싸준다.
 
 
-### [CSRF 공격 조치](https://github.com/hidekuma/gogglekaap/wiki/D.1.-CSRF-%EB%B0%A9%EC%96%B4:-Flask-WTF%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-CSRF-%EA%B3%B5%EA%B2%A9-%EC%A1%B0%EC%B9%98):
+## [CSRF 공격 조치](https://github.com/hidekuma/gogglekaap/wiki/D.1.-CSRF-%EB%B0%A9%EC%96%B4:-Flask-WTF%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-CSRF-%EA%B3%B5%EA%B2%A9-%EC%A1%B0%EC%B9%98):
 CSRF (Cross Site Request Forgery)의 약자로, 사이트간 요청 위조를 뜻한다. 희생자의 의지와 무관하게 공격자가 의도한 작업이 진행 되게끔 유도하는 해킹방법. (예: 클릭하면 100만원이란 버튼이었는데...)
 
 그래서 해당 공격에 대한 조치로, `쓰기/변경이 s가능한 엔드포인트 및 메서드들`에 특정 토큰을 포함해서 요청하도록 해야한다.
 - `app.config['SECRET_KEY'] = 'qwerty'` 로 csrf token이 만들어지도록 하자
+
+http://127.0.0.1:5000/auth/register 로 들어가면 그냥 백지가 보인다.
+- `{{ form.csrf_token }}` 라고만 `register.html` 을 작성해놨기 때문이다.
+- `{{ form }}` 이라고 해둔 `login.html` 은 잘 보인다.
+- `opt+cmd+I` 를 누른 후 페이지 소스 보기를 하면 토큰을 찾을 수 있다.
+  - 예: `<input id="csrf_token" name="csrf_token" type="hidden" value="IjY5YTRlZmJmNTc5NjVkNTg4ZWFlOWEzNzUyNTFiMjM0Y2E3ZDA5MmYi.Zuqt7w.8xZDDtCmRYg72cFm5l5jf0AufkQ">
+`

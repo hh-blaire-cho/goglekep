@@ -21,4 +21,20 @@ def create_app():
     def page_404(error):
         return render_template('404.html'), 404
 
+    from goglekep.forms.auth_form import LoginForm, RegisterForm
+
+    @app.route("/auth/login")
+    def login():
+        form = LoginForm()
+        return render_template('login.html', form=form)
+
+    @app.route("/auth/register")
+    def register():
+        form = RegisterForm()
+        return render_template('register.html', form=form)
+
+    @app.route("/auth/logout")
+    def logout():
+        return "logging out..."
+
     return app
