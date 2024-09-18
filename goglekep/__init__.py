@@ -16,9 +16,9 @@ def create_app():
     # CSRF INIT
     csrf.init_app(app)
 
-    @app.route("/")
-    def index():
-        return render_template('index.html')
+    # ROUTE INIT
+    from goglekep.routes import base_route
+    app.register_blueprint(base_route.bp)
 
     @app.errorhandler(404)
     def page_404(error):
