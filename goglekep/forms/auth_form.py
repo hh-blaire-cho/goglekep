@@ -1,11 +1,17 @@
 from flask_wtf import FlaskForm
-
-# TODO: 프론트에 연결 필요
+from wtforms import StringField, PasswordField
+from wtforms.validators import DataRequired, EqualTo
 
 
 class LoginForm(FlaskForm):
-    pass
+    user_id = StringField('User Id', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
 
 
-class RegisterForm(FlaskForm):
-    pass
+class RegisterForm(LoginForm):
+    password = PasswordField('Password', validators=[
+        DataRequired(),
+        EqualTo('repassword', message='Passwords must match.')
+    ])
+    repassword = PasswordField('Confirm Password', validators=[DataRequired()])
+    nickname = StringField('Nickname', validators=[DataRequired()])
