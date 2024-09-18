@@ -49,4 +49,18 @@ http://127.0.0.1:5000/auth/register 로 들어가면 그냥 백지가 보인다.
 - `{{ form }}` 이라고 해둔 `login.html` 은 잘 보인다.
 - `opt+cmd+I` 를 누른 후 페이지 소스 보기를 하면 토큰을 찾을 수 있다.
   - 예: `<input id="csrf_token" name="csrf_token" type="hidden" value="IjY5YTRlZmJmNTc5NjVkNTg4ZWFlOWEzNzUyNTFiMjM0Y2E3ZDA5MmYi.Zuqt7w.8xZDDtCmRYg72cFm5l5jf0AufkQ">
-`
+
+
+## 블루프린트
+라우트 처리가 많아지면, 블루프린트를 이용하면 관리가 편해짐. 개발 후 결과는 아래와 같음
+```
+(flaskenv)  HYEONHUI 🌙   ~/Desktop/myproj/flask/goglekep  ↱ main  flask routes
+run: create_app()
+Endpoint       Methods    Rule
+-------------  ---------  -----------------------
+auth.login     GET, POST  /auth/login
+auth.logout    GET        /auth/logout
+auth.register  GET, POST  /auth/register
+base.index     GET        /
+static         GET        /static/<path:filename>
+```
