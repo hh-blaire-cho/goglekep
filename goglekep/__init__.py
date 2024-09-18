@@ -1,9 +1,17 @@
 from flask import Flask, render_template
+from flask_wtf.csrf import CSRFProtect
+
+csrf = CSRFProtect()
 
 
 def create_app():
     print("run: create_app()")
     app = Flask(__name__)
+
+    app.config['SECRET_KEY'] = 'qwerty'
+
+    # CSRF INIT
+    csrf.init_app(app)
 
     @app.route("/")
     def index():

@@ -3,6 +3,7 @@ click==7.1.2
 distlib==0.3.8
 filelock==3.16.0
 Flask==1.1.2
+Flask-WTF==1.2.1
 importlib_metadata==8.5.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
@@ -19,4 +20,5 @@ virtualenv==20.26.4
 virtualenv-clone==0.5.7
 virtualenvwrapper==6.1.0
 Werkzeug==1.0.1
+WTForms==3.1.2
 zipp==3.20.2

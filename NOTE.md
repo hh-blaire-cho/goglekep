@@ -31,8 +31,15 @@ Requirement already satisfied: MarkupSafe==1.1.1 in /Users/I751244/Desktop/mypro
 ## 플라스크 환경변수 설정
 
 - 디버그모드 설정: `export FLASK_ENV=development`
-- 메인앱 설정: `export FLASK_APP=goglekep` (goglekep 모듈화 필요)
+- 메인앱 설정: `export FLASK_APP=gogglekaap` (gogglekaap 모듈화 필요)
 
-### goglekep 모듈화
+### gogglekaap 모듈화
 - gogglekaap이라는 별도 directory를 만든 후 module로 만들어주기
 - 이때 순환 참조 장애 방지를 위해 팩토리패턴을 사용하여 create_app으로 감싸준다.
+
+
+### [CSRF 공격 조치](https://github.com/hidekuma/gogglekaap/wiki/D.1.-CSRF-%EB%B0%A9%EC%96%B4:-Flask-WTF%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-CSRF-%EA%B3%B5%EA%B2%A9-%EC%A1%B0%EC%B9%98):
+CSRF (Cross Site Request Forgery)의 약자로, 사이트간 요청 위조를 뜻한다. 희생자의 의지와 무관하게 공격자가 의도한 작업이 진행 되게끔 유도하는 해킹방법. (예: 클릭하면 100만원이란 버튼이었는데...)
+
+그래서 해당 공격에 대한 조치로, `쓰기/변경이 s가능한 엔드포인트 및 메서드들`에 특정 토큰을 포함해서 요청하도록 해야한다.
+- `app.config['SECRET_KEY'] = 'qwerty'` 로 csrf token이 만들어지도록 하자
